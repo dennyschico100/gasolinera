@@ -46,3 +46,6 @@ C:\Users\windows10\Documents\ModernFlat-GUI-Version-Base-C-Sharp-master\GUI_V_2\
 C:\Users\windows10\Documents\ModernFlat-GUI-Version-Base-C-Sharp-master\GUI_V_2\obj\Debug\GUI_V_2.csproj.CoreCompileInputs.cache
 C:\Users\windows10\Documents\ModernFlat-GUI-Version-Base-C-Sharp-master\GUI_V_2\obj\Debug\GUI_V_2.exe
 C:\Users\windows10\Documents\ModernFlat-GUI-Version-Base-C-Sharp-master\GUI_V_2\obj\Debug\GUI_V_2.pdb
+C:\Users\windows10\Documents\ModernFlat-GUI-Version-Base-C-Sharp-master\GUI_V_2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\windows10\Documents\ModernFlat-GUI-Version-Base-C-Sharp-master\GUI_V_2\bin\Debug\Newtonsoft.Json.xml
+C:\Users\windows10\Documents\ModernFlat-GUI-Version-Base-C-Sharp-master\GUI_V_2\obj\Debug\GUI_V_2.csproj.CopyComplete
