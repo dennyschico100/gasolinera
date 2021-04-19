@@ -30,6 +30,7 @@ namespace Gasolinera.vistas
             acceso = GUI_V_2.Properties.Settings.Default.token;
             obtenerUsuarios(acceso);
             obtenerMunicipios();
+            desabilitarCampos();
             
         }
 
@@ -127,21 +128,44 @@ namespace Gasolinera.vistas
             }
             else if (password != confirmarPassword )
             {
-                MessageBox.Show("CONTRASEÑAS NO COINCIDEN");
 
-            }
-            if (rbAdmin.Checked)
-            {
-                rol = 1;
+                errorProvider1.SetError(txtPassword, "");
+                MessageBox.Show("CONTRASEÑAS NO COINCIDEN");
+                txtConfirmarContra.Focus();
+
             }
             else
             {
-                rol = 2;
+                if (rbAdmin.Checked)
+                {
+                    rol = 1;
+                }
+                else
+                {
+                    rol = 2;
+                }
+                usuarioNuevo.Id_rol = rol;
+
+
+                if (String.IsNullOrEmpty(txtIdUsuario.Text))
+                {
+                    UsuariosController usuarioControlle = new UsuariosController();
+                    await UsuariosController.guardar(usuarioNuevo, acceso);
+                    limpiarCampos();
+                }
+                else
+                {
+
+                    usuarioNuevo.Id_usuario = Convert.ToInt32(txtIdUsuario.Text);
+                    UsuariosController usuarioControlle = new UsuariosController();
+                    await UsuariosController.modificar(usuarioNuevo, acceso);
+                    limpiarCampos();
+
+                }
+                obtenerUsuarios(acceso);
+
             }
-            usuarioNuevo.Id_rol = rol;
             
-            UsuariosController usuarioControlle = new UsuariosController();
-            await UsuariosController.guardar(usuarioNuevo,acceso);
 
             //dtUsuairos.DataSource = dt;
 
@@ -202,7 +226,7 @@ namespace Gasolinera.vistas
             selectedIndexMunicipio= Convert.ToInt32(dtUsuairos.Rows[e.RowIndex].Cells[8].Value.ToString());
             cmbMunicipios.SelectedIndex = selectedIndexMunicipio;
 
-
+            txtIdUsuario.Text = dtUsuairos.Rows[e.RowIndex].Cells[1].Value.ToString();
 
             if (idrol == 1)
             {
@@ -233,6 +257,54 @@ namespace Gasolinera.vistas
 
             selectedIndex++;
             obtenerMunicipios();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            limpiarCampos();
+        }
+        public void limpiarCampos()
+        {
+            txtApellido.Text = "";
+            txtConfirmarContra.Text = "";
+            txtDireccion.Text = "";
+            txtIdUsuario.Text = "";
+            txtnombres.Text = "";
+            txtPassword.Text = "";
+            txtTelefono.Text = "";
+            txtUsuario.Text = "";
+
+        }
+        public void desabilitarCampos()
+        {
+            txtApellido.Enabled = false;
+            txtConfirmarContra.Enabled = false;
+            txtDireccion.Enabled = false;
+            txtIdUsuario.Enabled = false;
+            txtnombres.Enabled = false;
+            txtPassword.Enabled = false;
+            txtTelefono.Enabled = false;
+            txtUsuario.Enabled = false;
+            rdCajero.Checked = false;
+            rbAdmin.Checked = false;
+                
+        }
+        public void habilitarCampos()
+        {
+            txtApellido.Enabled = !false;
+            txtConfirmarContra.Enabled = !false;
+            txtDireccion.Enabled = !false;
+            txtIdUsuario.Enabled = !false;
+            txtnombres.Enabled = !false;
+            txtPassword.Enabled = !false;
+            txtTelefono.Enabled = !false;
+            txtUsuario.Enabled = !false;
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            habilitarCampos();
         }
     }
 }

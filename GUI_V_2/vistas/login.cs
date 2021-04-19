@@ -14,9 +14,9 @@ using GUI_V_2.controladores;
 
 namespace Gasolinera.vistas
 {
-    public partial class login : Form
+    public partial class loginFrm : Form
     {
-        public login()
+        public loginFrm()
         {
             InitializeComponent();
         }
@@ -29,11 +29,10 @@ namespace Gasolinera.vistas
         private async void btnIniciar_Click(object sender, EventArgs e)
         {
 
-            iniciarSession();
-
-
+            iniciarSessionAsync();
+            
         }
-        public void iniciarSession()
+        public async Task iniciarSessionAsync()
         {
             string usuario = txtUsuario.Text.Trim();
             string password = txtPassword.Text.Trim();
@@ -50,17 +49,28 @@ namespace Gasolinera.vistas
             }
             else
             {
+
                 Login login = new Login();
                 login.Email = usuario;
                 login.Password = password;
-                LoginController.login(login);
+                bool res = await LoginController.login(login);
+
+                if (res)
+                {
+                    this.Hide();
+
+                }
+                else
+                {
+
+                    MessageBox.Show("Credenciales incorrectas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
 
             }
         }
         private void btnIniciar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            iniciarSession();
 
         }
     }

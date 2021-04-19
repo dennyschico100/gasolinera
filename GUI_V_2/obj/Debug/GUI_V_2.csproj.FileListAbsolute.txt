@@ -55,7 +55,6 @@ C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\GUI_V_2.InicioResumen.
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\GUI_V_2.Productos.resources
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\GUI_V_2.Properties.Resources.resources
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\GUI_V_2.vistas.formRegistro.resources
-C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\Gasolinera.vistas.login.resources
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\Gasolinera.vistas.Menu.resources
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\Gasolinera.vistas.registro.resources
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\GUI_V_2.csproj.GenerateResource.cache
@@ -68,3 +67,4 @@ C:\Users\windows10\Documents\gasolinera\GUI_V_2\bin\Debug\GUI_V_2.pdb
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\bin\Debug\Newtonsoft.Json.dll
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\bin\Debug\Newtonsoft.Json.xml
 C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\GUI_V_2.csproj.CopyComplete
+C:\Users\windows10\Documents\gasolinera\GUI_V_2\obj\Debug\Gasolinera.vistas.loginFrm.resources

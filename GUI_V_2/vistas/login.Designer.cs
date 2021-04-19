@@ -1,6 +1,6 @@
 ﻿namespace Gasolinera.vistas
 {
-    partial class login
+    partial class loginFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -100,7 +100,7 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // login
+            // loginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,7 +111,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "login";
+            this.Name = "loginFrm";
             this.Text = "login";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

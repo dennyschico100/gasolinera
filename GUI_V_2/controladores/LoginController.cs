@@ -1,4 +1,5 @@
 ﻿using Gasolinera.Modelo;
+using Gasolinera.vistas;
 using GUI_V_2.Modelo;
 using Newtonsoft.Json;
 using System;
@@ -27,7 +28,7 @@ namespace GUI_V_2.controladores
 
 
      
-        public static async Task<Usuarios> login(Login login)
+        public static async Task<bool> login(Login login)
         {
             cliente = new HttpClient();
             var jsonObject = JsonConvert.SerializeObject(login);
@@ -47,22 +48,27 @@ namespace GUI_V_2.controladores
                             string token = objResponse.ToString();
                             token =  token.Replace("\"", "");
                             Properties.Settings.Default.token = token;
-                            Form1 frmGeneral = new Form1();
-                            frmGeneral.Show();
+                     
 
-                            //return user;
+                            Form1 frmGeneral = new Form1();
+                           
+
+                            frmGeneral.Show();
+                            
+                           
+                            return true;
                         }
                     }
                     else
                     {
-                        //MessageBox.Show(res.ToString());
+                        return false;
 
                     }
                 }
 
 
             }
-            return null;
+            
 
         }
 
