@@ -1,4 +1,5 @@
 ﻿using Gasolinera.Modelo;
+using GUI_V_2.Modelo;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Gasolinera.controladores
+namespace GUI_V_2.controladores
 {
     class LoginController
     {
@@ -43,7 +44,12 @@ namespace Gasolinera.controladores
                         {
                             string objResponse = await content.ReadAsStringAsync();
                             //user = (User)JsonConvert.DeserializeObject(objResponse, typeof(Usuarios));
-                            MessageBox.Show(objResponse);
+                            string token = objResponse.ToString();
+                            token =  token.Replace("\"", "");
+                            Properties.Settings.Default.token = token;
+                            Form1 frmGeneral = new Form1();
+                            frmGeneral.Show();
+
                             //return user;
                         }
                     }

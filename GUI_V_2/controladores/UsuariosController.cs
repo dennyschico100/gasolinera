@@ -29,29 +29,46 @@ namespace Gasolinera.controladores
 
         }
 
-        public static async Task<DataTable> ObtenerDatos()
+        public static async Task<DataTable> ObtenerDatos(string token)
         {
             dt = new DataTable();
 
             using (cliente = new HttpClient())
             {
-                using (res = await cliente.GetAsync("https://api.salud.gob.sv/departamentos?idPais=68"))
+                cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                /*
+                 var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:55600/identity");
+                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                 */
+                using (res = await cliente.GetAsync(URL))
                 {
-
-                    using (content = res.Content)
+                    if (res.IsSuccessStatusCode)
                     {
-                        string data = await content.ReadAsStringAsync();
-                            
-                        if (data != null)
+                        using (content = res.Content)
                         {
-                            //Make sure to add a reference to System.Net.Http.Formatting.dll
-                            dt = (DataTable)JsonConvert.DeserializeObject(data, typeof(DataTable));
-                            
-                            Console.WriteLine(dt);
-                            return dt;
+                            string data = await content.ReadAsStringAsync();
 
+                            if (data != null)
+                            {
+                                //Make sure to add a reference to System.Net.Http.Formatting.dll
+                                dt = (DataTable)JsonConvert.DeserializeObject(data, typeof(DataTable));
+
+                                Console.WriteLine(dt);
+                                return dt;
+
+                            }
+                            else
+                            {
+                                MessageBox.Show(data);
+                            }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show(res.ToString());
+
+                    }
+                    
 
                 }
             }
@@ -59,7 +76,7 @@ namespace Gasolinera.controladores
             return null;
         }
 
-        public static async Task<User> guardar(Usuarios user)
+        public static async Task<User> guardar(Usuarios user,string acceso)
         {
 
             /*
@@ -70,11 +87,14 @@ namespace Gasolinera.controladores
 
             */
             cliente = new HttpClient();
+            string accessToken = "";
             var jsonObject = JsonConvert.SerializeObject(user);
             
             var data = new StringContent(jsonObject, Encoding.UTF8, "application/json");
             using (cliente = new HttpClient())
             {
+                cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + acceso);
+
                 using (res = await cliente.PostAsync(URL, data))
                 {
                     if (res.IsSuccessStatusCode)

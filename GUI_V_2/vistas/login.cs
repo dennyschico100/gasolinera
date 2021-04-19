@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Gasolinera.controladores;
+using GUI_V_2.Modelo;
+using GUI_V_2.controladores;
+
 namespace Gasolinera.vistas
 {
     public partial class login : Form
@@ -25,16 +28,23 @@ namespace Gasolinera.vistas
 
         private async void btnIniciar_Click(object sender, EventArgs e)
         {
-            
+
+            iniciarSession();
+
+
+        }
+        public void iniciarSession()
+        {
             string usuario = txtUsuario.Text.Trim();
             string password = txtPassword.Text.Trim();
             if (String.IsNullOrEmpty(usuario))
             {
                 errorProvider1.SetError(txtUsuario, "INGRESE EL USUARIO");
                 txtUsuario.Focus();
-            }else if (String.IsNullOrEmpty(password ))
+            }
+            else if (String.IsNullOrEmpty(password))
             {
-                errorProvider1.SetError(txtUsuario,"");
+                errorProvider1.SetError(txtUsuario, "");
                 errorProvider1.SetError(txtPassword, "Ingrese una contraseña");
                 txtPassword.Focus();
             }
@@ -47,7 +57,10 @@ namespace Gasolinera.vistas
 
 
             }
-
+        }
+        private void btnIniciar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            iniciarSession();
 
         }
     }

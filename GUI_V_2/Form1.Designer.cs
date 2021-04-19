@@ -139,8 +139,9 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(250, 40);
             this.button6.TabIndex = 6;
-            this.button6.Text = "Etc";
+            this.button6.Text = "Usuarios";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -205,6 +206,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Ventas";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnprod
             // 
@@ -229,7 +231,7 @@
             this.btnlogoInicio.Image = ((System.Drawing.Image)(resources.GetObject("btnlogoInicio.Image")));
             this.btnlogoInicio.Location = new System.Drawing.Point(3, 6);
             this.btnlogoInicio.Name = "btnlogoInicio";
-            this.btnlogoInicio.Size = new System.Drawing.Size(254, 76);
+            this.btnlogoInicio.Size = new System.Drawing.Size(88, 76);
             this.btnlogoInicio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnlogoInicio.TabIndex = 0;
             this.btnlogoInicio.TabStop = false;

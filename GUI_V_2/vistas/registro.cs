@@ -16,10 +16,21 @@ namespace Gasolinera.vistas
     {
         int selectedIndex=0;
         int selectedIndexMunicipio = 0;
+
+        string acceso = "";
+        
         public registro()
         {
             InitializeComponent();
             obtenerDepartamentos();
+            selectedIndex = cmbDepartamentos.SelectedIndex;
+            selectedIndex++;
+
+         
+            acceso = GUI_V_2.Properties.Settings.Default.token;
+            obtenerUsuarios(acceso);
+            obtenerMunicipios();
+            
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -30,12 +41,11 @@ namespace Gasolinera.vistas
         private void btbRegUsuarios_Click(object sender, EventArgs e)
         {
 
-            //ob();
-            guardar();
+          
         }
 
 
-        public async Task guardar()
+        public async Task guardar(string acceso)
         {
 
             DataTable dt;
@@ -131,7 +141,7 @@ namespace Gasolinera.vistas
             usuarioNuevo.Id_rol = rol;
             
             UsuariosController usuarioControlle = new UsuariosController();
-            await UsuariosController.guardar(usuarioNuevo);
+            await UsuariosController.guardar(usuarioNuevo,acceso);
 
             //dtUsuairos.DataSource = dt;
 
@@ -148,32 +158,28 @@ namespace Gasolinera.vistas
             foreach (DataRow row in dt.Rows)
                 nombre.Add((string)row["nombre"]);
             cmbDepartamentos.DataSource = nombre;
+            
 
         }
-        public async Task ob()
+        public async Task obtenerUsuarios(string token)
         {
 
             DataTable dt;
 
             UsuariosController us = new UsuariosController();
-            dt = (DataTable) await UsuariosController.ObtenerDatos();
+            dt = (DataTable) await UsuariosController.ObtenerDatos(token);
 
             dtUsuairos.DataSource = dt;
 
         }
         
-        private void cmbDepartamentos_SelectedValueChanged(object sender, EventArgs e)
-        {
-            selectedIndex =  cmbDepartamentos.SelectedIndex;
-            
-
-            obtenerMunicipios(); 
-        } 
+       
 
 
         public async Task  obtenerMunicipios()
         {
              DataTable dt;
+             
 
             dt = (DataTable)await UsuariosController.obtenerMunicipios(selectedIndex);
  
@@ -185,12 +191,48 @@ namespace Gasolinera.vistas
         }
         private void dtUsuairos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            txtnombres.Text = dtUsuairos.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtUsuario.Text = dtUsuairos.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtPassword.Text = dtUsuairos.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtTelefono.Text = dtUsuairos.Rows[e.RowIndex].Cells[5].Value.ToString();
+            monthCalendar1.SetDate(Convert.ToDateTime(dtUsuairos.Rows[e.RowIndex].Cells[6].Value.ToString()));
+            txtDireccion.Text = dtUsuairos.Rows[e.RowIndex].Cells[7].Value.ToString();
+            //txtnombres.Text = dtUsuairos.Rows[e.RowIndex].Cells[8].Value.ToString();
+            int idrol = Convert.ToInt32(dtUsuairos.Rows[e.RowIndex].Cells[9].Value.ToString());
+            selectedIndexMunicipio= Convert.ToInt32(dtUsuairos.Rows[e.RowIndex].Cells[8].Value.ToString());
+            cmbMunicipios.SelectedIndex = selectedIndexMunicipio;
 
+
+
+            if (idrol == 1)
+            {
+                rbAdmin.Checked = true;
+
+
+            }
+            else
+            {
+                rdCajero.Checked = true;
+            }
         }
 
         private void btnListar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //ob();
+            guardar(acceso);
+        }
+
+        private void cmbDepartamentos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedIndex = cmbDepartamentos.SelectedIndex;
+
+            selectedIndex++;
+            obtenerMunicipios();
         }
     }
 }

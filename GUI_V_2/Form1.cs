@@ -8,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Gasolinera.vistas;
 
 namespace GUI_V_2
 {
     public partial class Form1 : Form
     {
+        string acceso = "";
         public Form1()
         {
             InitializeComponent();
+            acceso = Properties.Settings.Default.token;
+
         }
         private void btnMenu_Click(object sender, EventArgs e)
         {
@@ -88,6 +92,18 @@ namespace GUI_V_2
         private void Form1_Load(object sender, EventArgs e)
         {
             btnlogoInicio_Click(null,e);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            
+        
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new registro() );
         }
     }
 }
