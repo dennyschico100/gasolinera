@@ -31,7 +31,8 @@ namespace Gasolinera.vistas
             obtenerUsuarios(acceso);
             obtenerMunicipios();
             desabilitarCampos();
-            
+            desabilitarBotones();
+
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -152,6 +153,7 @@ namespace Gasolinera.vistas
                     UsuariosController usuarioControlle = new UsuariosController();
                     await UsuariosController.guardar(usuarioNuevo, acceso);
                     limpiarCampos();
+                    desabilitarBotones();
                 }
                 else
                 {
@@ -160,6 +162,8 @@ namespace Gasolinera.vistas
                     UsuariosController usuarioControlle = new UsuariosController();
                     await UsuariosController.modificar(usuarioNuevo, acceso);
                     limpiarCampos();
+                    desabilitarBotones();
+
 
                 }
                 obtenerUsuarios(acceso);
@@ -238,6 +242,9 @@ namespace Gasolinera.vistas
             {
                 rdCajero.Checked = true;
             }
+            btnEliminar.Enabled = true;
+            txtIdUsuario.Enabled = true;
+            btnEditar.Enabled = true;
         }
 
         private void btnListar_Click(object sender, EventArgs e)
@@ -263,6 +270,7 @@ namespace Gasolinera.vistas
         {
 
             limpiarCampos();
+            desabilitarBotones();
         }
         public void limpiarCampos()
         {
@@ -275,6 +283,13 @@ namespace Gasolinera.vistas
             txtTelefono.Text = "";
             txtUsuario.Text = "";
 
+        }
+        public void desabilitarBotones()
+        {
+            btnCancelar.Enabled = false;
+            btnEditar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnGuardar.Enabled = false;
         }
         public void desabilitarCampos()
         {
@@ -305,6 +320,36 @@ namespace Gasolinera.vistas
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             habilitarCampos();
+            btnCancelar.Enabled = !false;
+            btnEditar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnGuardar.Enabled = !false;
+        }
+
+        private async Task eliminarUsuario()
+        {
+
+
+            await UsuariosController.eliminar(txtIdUsuario.Text, acceso);
+            await obtenerUsuarios(acceso);
+
+
+            //limpiarCampos();
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {   
+
+            eliminarUsuario();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            habilitarCampos();
+            btnGuardar.Enabled = true;
+            btnCancelar.Enabled = true;
+            
         }
     }
 }

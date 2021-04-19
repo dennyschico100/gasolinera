@@ -21,7 +21,7 @@ namespace Gasolinera.controladores
 
         static HttpResponseMessage res;
         
-        private static string URL = "http://confety-001-site1.itempurl.com/Usuarios";
+        public  static string URL = "http://confety-001-site1.itempurl.com/Usuarios";
         public string ex = "usuarios/guardar";
 
         public UsuariosController()
@@ -122,13 +122,6 @@ namespace Gasolinera.controladores
         public static async Task<User> modificar(Usuarios user, string acceso)
         {
 
-            /*
-            var person = new Person("John Doe", "gardener");
-
-            var json = JsonConvert.SerializeObject(person);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-            */
             cliente = new HttpClient();
             string accessToken = "";
             var jsonObject = JsonConvert.SerializeObject(user);
@@ -164,6 +157,58 @@ namespace Gasolinera.controladores
             }
             return null;
         }
+
+        public static async Task<bool> eliminar(string idUser, string acceso)
+        {
+
+            cliente = new HttpClient();
+            
+            //var jsonObject = JsonConvert.SerializeObject(id);
+
+            //var data = new StringContent(jsonObject,Encoding.UTF8, "application/json");
+            using (cliente = new HttpClient())
+            {
+                cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + acceso);
+              
+
+                URL += "/" + idUser.ToString();
+                
+                using (res = await cliente.DeleteAsync(URL  ))
+                {
+                    if (res.IsSuccessStatusCode)
+                    {
+
+                        using (content = res.Content)
+                        {
+                            string objResponse = await content.ReadAsStringAsync();
+                            if (objResponse != null)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                                
+                            }
+
+                            //user = (User)JsonConvert.DeserializeObject(objResponse, typeof(Usuarios));
+                            
+                            //return user;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(""+res.ToString(), "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                    }
+                }
+
+
+            }
+            return false;
+        }
+
         public static async Task<DataTable> obtenerDepartamentos()
         {
             dt = new DataTable();
