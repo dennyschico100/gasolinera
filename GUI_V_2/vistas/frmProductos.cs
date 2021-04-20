@@ -262,5 +262,33 @@ namespace GUI_V_2.vistas
             btnEliminar.Enabled = false;
             btnGuardar.Enabled = !false;
         }
+
+        private void dtProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtnombre.Text = dtProductos.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtPrecio.Text = dtProductos.Rows[e.RowIndex].Cells[3].Value.ToString();
+            monthCalendar1.SetDate(Convert.ToDateTime(dtProductos.Rows[e.RowIndex].Cells[4].Value.ToString()));
+            txtStock.Text = dtProductos.Rows[e.RowIndex].Cells[5].Value.ToString();
+            //txtnombres.Text = dtUsuairos.Rows[e.RowIndex].Cells[8].Value.ToString();
+            int estado = Convert.ToInt32(dtProductos.Rows[e.RowIndex].Cells[6].Value.ToString());
+            //cmbMunicipios.SelectedIndex = selectedIndexMunicipio;
+            selectedIndexProveedor = Convert.ToInt32(dtProductos.Rows[e.RowIndex].Cells[9].Value.ToString());
+            selectedIndex = Convert.ToInt32(dtProductos.Rows[e.RowIndex].Cells[11].Value.ToString());
+
+            if (estado == 1)
+            {
+                rbdActivo.Checked = true;
+
+
+            }
+            else
+            {
+                rbdInactivo.Checked = true;
+            }
+            btnEliminar.Enabled = true;
+            //txtIdUsuario.Enabled = true;
+
+            btnEditar.Enabled = true;
+        }
     }
 }

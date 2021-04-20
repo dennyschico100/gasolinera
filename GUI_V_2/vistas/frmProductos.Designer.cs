@@ -341,6 +341,7 @@ namespace GUI_V_2.vistas
             this.dtProductos.ReadOnly = true;
             this.dtProductos.Size = new System.Drawing.Size(785, 157);
             this.dtProductos.TabIndex = 101;
+            this.dtProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtProductos_CellContentClick);
             // 
             // errorProvider1
             // 

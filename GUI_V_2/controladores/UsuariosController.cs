@@ -134,7 +134,7 @@ namespace Gasolinera.controladores
                 using (res = await cliente.PutAsync(URL, data))
                 {   
                     if (res.IsSuccessStatusCode)
-                    {
+                    {   
 
                         using (content = res.Content)
                         {

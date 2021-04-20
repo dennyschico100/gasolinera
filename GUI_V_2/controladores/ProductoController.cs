@@ -82,12 +82,57 @@ namespace GUI_V_2.controladores
             string accessToken = "";
             var jsonObject = JsonConvert.SerializeObject(productos);
             MessageBox.Show(jsonObject);
+
             var data = new StringContent(jsonObject, Encoding.UTF8, "application/json");
             using (cliente = new HttpClient())
             {
                 cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + acceso);
 
                 using (res = await cliente.PostAsync(URL, data))
+                {
+                    if (res.IsSuccessStatusCode)
+                    {
+
+                        using (content = res.Content)
+                        {
+                            string objResponse = await content.ReadAsStringAsync();
+                            //user = (User)JsonConvert.DeserializeObject(objResponse, typeof(Usuarios));
+                            MessageBox.Show(objResponse);
+                            //return user;
+                        }
+                    }
+                    else
+                    {
+                        //MessageBox.Show(res.ToString());
+
+                    }
+                }
+
+
+            }
+            return null;
+        }
+        public static async Task<Productos> modificar(Producto productos, string acceso)
+        {
+
+            /*
+            var person = new Person("John Doe", "gardener");
+
+            var json = JsonConvert.SerializeObject(person);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            */
+            cliente = new HttpClient();
+            string accessToken = "";
+            var jsonObject = JsonConvert.SerializeObject(productos);
+            MessageBox.Show(jsonObject);
+
+            var data = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+            using (cliente = new HttpClient())
+            {
+                cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + acceso);
+
+                using (res = await cliente.PutAsync(URL, data))
                 {
                     if (res.IsSuccessStatusCode)
                     {
