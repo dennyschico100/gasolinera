@@ -48,7 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controladores\CategoriaController.cs" />
     <Compile Include="controladores\LoginController.cs" />
+    <Compile Include="controladores\ProductoController.cs" />
+    <Compile Include="controladores\ProveedorController.cs" />
     <Compile Include="controladores\UsuariosController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -69,7 +72,7 @@
     <Compile Include="Modelo\Factura.cs" />
     <Compile Include="Modelo\Login.cs" />
     <Compile Include="Modelo\Municipio.cs" />
-    <Compile Include="Modelo\Productos.cs" />
+    <Compile Include="Modelo\Producto.cs" />
     <Compile Include="Modelo\Proveedores.cs" />
     <Compile Include="Modelo\Roles.cs" />
     <Compile Include="Modelo\TiposPagos.cs" />
@@ -84,6 +87,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vistas\frmProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\frmProductos.Designer.cs">
+      <DependentUpon>frmProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="vistas\login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +130,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="vistas\formRegistro.resx" />
+    <EmbeddedResource Include="vistas\frmProductos.resx">
+      <DependentUpon>frmProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vistas\login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>

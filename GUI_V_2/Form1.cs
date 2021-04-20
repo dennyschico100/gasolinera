@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Gasolinera.vistas;
+using GUI_V_2.vistas;
 
 namespace GUI_V_2
 {
@@ -80,7 +81,8 @@ namespace GUI_V_2
 
         private void btnprod_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new Productos());
+            //8AbrirFormEnPanel(new Productos());
+            AbrirFormEnPanel(new frmProductos() );
         }
 
         private void btnlogoInicio_Click(object sender, EventArgs e)
@@ -104,6 +106,17 @@ namespace GUI_V_2
         private void button6_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new registro() );
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.token = "";
+            this.Close();
+            
+            loginFrm loginFrm = new loginFrm();
+            loginFrm.Show();
+            
+
         }
     }
 }

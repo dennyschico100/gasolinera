@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 namespace Gasolinera.Modelo
 {
-    class Productos
+    class Producto
     {
         private int id_producto;
         private string nombre;
         private double precio;
         private string fecha_registro;
-        private string fecha_modificacion;
-        private int cantidsd_en_stock;
+        private string imagen;
+        private int cantidad_en_stock;
         private int estado_producto;
         private int id_unidad;
         private int id_proveedor;
         private int id_usuario;
         private int id_categoria;
+        public Producto()
+        {
 
+        }
         public int Id_producto
         {
             get
@@ -72,29 +75,29 @@ namespace Gasolinera.Modelo
             }
         }
 
-        public string Fecha_modificacion
+        public string Imagen
         {
             get
             {
-                return fecha_modificacion;
+                return imagen;
             }
 
             set
             {
-                fecha_modificacion = value;
+                imagen = value;
             }
         }
 
-        public int Cantidsd_en_stock
+        public int Cantidad_en_stock
         {
             get
             {
-                return cantidsd_en_stock;
+                return cantidad_en_stock;
             }
 
             set
             {
-                cantidsd_en_stock = value;
+                cantidad_en_stock = value;
             }
         }
 
@@ -163,14 +166,14 @@ namespace Gasolinera.Modelo
             }
         }
 
-        public Productos(Productos p )
+        public Producto(Producto p )
         {
             this.id_producto = p.id_producto;
             this.nombre = p.nombre;
             this.precio = p.precio;
             this.fecha_registro = p.fecha_registro;
-            this.fecha_modificacion = p.fecha_modificacion;
-            this.cantidsd_en_stock = p.cantidsd_en_stock;
+            this.imagen = p.imagen;
+            this.cantidad_en_stock = p.cantidad_en_stock;
             this.estado_producto = p.estado_producto;
             this.id_unidad = p.id_unidad;
             this.id_proveedor = p.id_proveedor;

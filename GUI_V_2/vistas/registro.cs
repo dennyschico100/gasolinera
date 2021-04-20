@@ -121,7 +121,7 @@ namespace Gasolinera.vistas
 
             }
             else if (String.IsNullOrEmpty(confirmarPassword))
-            {
+            {   
                 errorProvider1.SetError(txtPassword, "");
                 errorProvider1.SetError(txtConfirmarContra, "repita la contraseña");
                 txtConfirmarContra.Focus();
@@ -350,6 +350,11 @@ namespace Gasolinera.vistas
             btnGuardar.Enabled = true;
             btnCancelar.Enabled = true;
             
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
