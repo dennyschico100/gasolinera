@@ -54,9 +54,11 @@ namespace GUI_V_2.vistas
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dtProductos = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbUsuarios = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbMedida = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -80,7 +82,7 @@ namespace GUI_V_2.vistas
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label11.Location = new System.Drawing.Point(420, 260);
+            this.label11.Location = new System.Drawing.Point(406, 260);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(86, 18);
             this.label11.TabIndex = 99;
@@ -347,14 +349,6 @@ namespace GUI_V_2.vistas
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // cmbUsuarios
-            // 
-            this.cmbUsuarios.FormattingEnabled = true;
-            this.cmbUsuarios.Location = new System.Drawing.Point(208, 178);
-            this.cmbUsuarios.Name = "cmbUsuarios";
-            this.cmbUsuarios.Size = new System.Drawing.Size(121, 21);
-            this.cmbUsuarios.TabIndex = 108;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -375,15 +369,47 @@ namespace GUI_V_2.vistas
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(121, 21);
             this.cmbCategoria.TabIndex = 109;
+            this.cmbCategoria.SelectedIndexChanged += new System.EventHandler(this.cmbCategoria_SelectedIndexChanged);
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.txtUsuario.Location = new System.Drawing.Point(213, 182);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(116, 20);
+            this.txtUsuario.TabIndex = 111;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label7.Location = new System.Drawing.Point(406, 184);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(116, 18);
+            this.label7.TabIndex = 112;
+            this.label7.Text = "unidad medida";
+            // 
+            // cmbMedida
+            // 
+            this.cmbMedida.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.cmbMedida.FormattingEnabled = true;
+            this.cmbMedida.Location = new System.Drawing.Point(519, 205);
+            this.cmbMedida.Name = "cmbMedida";
+            this.cmbMedida.Size = new System.Drawing.Size(121, 21);
+            this.cmbMedida.TabIndex = 113;
             // 
             // frmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 788);
+            this.Controls.Add(this.cmbMedida);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbCategoria);
-            this.Controls.Add(this.cmbUsuarios);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEditar);
@@ -409,6 +435,7 @@ namespace GUI_V_2.vistas
             this.Name = "frmProductos";
             this.Text = "frmProductos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmProductos_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductos)).EndInit();
@@ -444,8 +471,10 @@ namespace GUI_V_2.vistas
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridView dtProductos;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ComboBox cmbUsuarios;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbCategoria;
+        private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbMedida;
     }
 }

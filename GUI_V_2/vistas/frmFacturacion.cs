@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Gasolinera.vistas
+namespace GUI_V_2.vistas
 {
-    public partial class Menu : Form
+    public partial class frmFacturacion : Form
     {
-        public Menu()
+        public frmFacturacion()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -16,6 +16,7 @@ namespace GUI_V_2.vistas
         int selectedIndex = 0;
         int selectedIndexProveedor= 0;
 
+        int selectedIndexUnidad = 0;
         string acceso = "";
         bool nuevoProducto = false;
         public frmProductos()
@@ -28,6 +29,8 @@ namespace GUI_V_2.vistas
             desabilitarBotones();
             obtenerProveedors();
             obtenerCategorias();
+            obtenerUnidadesMedida();
+
         }
         public async Task obtenerProductos(string token)
         {
@@ -51,11 +54,9 @@ namespace GUI_V_2.vistas
             int estado = 0;
             string fecha = monthCalendar1.SelectionStart.Date.ToString("yyyy-MM-dd");
             string imagen = imagenRuta.Text.Trim();
-            int usuario = cmbUsuarios.SelectedIndex;
+            string usuario = txtUsuario.Text.Trim();
             selectedIndexProveedor = cmbProveedores.SelectedIndex;
             
-            MessageBox.Show(acceso);
-
             if (String.IsNullOrEmpty(nombre))
             {
                 errorProvider1.SetError(txtnombre, "INGRESE EL NOMBRE DEL PRODUCTO");
@@ -68,7 +69,14 @@ namespace GUI_V_2.vistas
                 txtPrecio.Focus();
 
             }
-            
+            else if (String.IsNullOrEmpty(usuario))
+            {
+                errorProvider1.SetError(txtPrecio, "");
+                errorProvider1.SetError(txtUsuario, "Ingrese el usuario");
+                txtUsuario.Focus();
+
+            }
+
             else if (!rbdActivo.Checked && !rbdInactivo.Checked)
             {
 
@@ -111,12 +119,14 @@ namespace GUI_V_2.vistas
                 productos.Cantidad_en_stock = Convert.ToInt32(stock);
 
                 productos.Estado_producto = estado;
-                productos.Id_proveedor = cmbProveedores.SelectionLength;
-                productos.Id_categoria = cmbCategoria.SelectionLength;
-
+                productos.Id_proveedor = cmbProveedores.SelectedIndex+1;
+                productos.Id_categoria = cmbCategoria.SelectedIndex + 1;
+                productos.Id_usuario = Convert.ToInt32(usuario);
+                productos.Id_unidad = cmbMedida.SelectedIndex +1;
+                await ProductoController.guardar(productos, acceso);
                 if (nuevoProducto)
                 {   
-                    await ProductoController.guardar(productos, acceso);
+                    
                     //limpiarCampos();
                     //desabilitarBotones();
                 }
@@ -133,7 +143,7 @@ namespace GUI_V_2.vistas
 
             }
 
-
+            obtenerProductos(acceso);
             //dtUsuairos.DataSource = dt;
 
         }
@@ -156,6 +166,19 @@ namespace GUI_V_2.vistas
             foreach (DataRow row in dt.Rows)
                 nombre.Add((string)row["nombre"]);
             cmbProveedores.DataSource = nombre;
+
+        }
+        public async Task obtenerUnidadesMedida()
+        {
+            DataTable dt;
+
+
+            dt = (DataTable)await UnidadMedidaController.obtenerMedidas(acceso);
+
+            List<string> nombre = new List<string>(dt.Rows.Count);
+            foreach (DataRow row in dt.Rows)
+                nombre.Add((string)row["nombre_unidad"]);
+            cmbMedida.DataSource = nombre;
 
         }
 
@@ -215,8 +238,12 @@ namespace GUI_V_2.vistas
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            btnGuardar.Enabled = true;
-            btnCancelar.Enabled = true;
+            
+            habilitarCampos();
+            btnCancelar.Enabled = !false;
+            btnEditar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnGuardar.Enabled = !false;
 
         }
         public void limpiarCampos()
@@ -234,6 +261,7 @@ namespace GUI_V_2.vistas
 
             limpiarCampos();
             desabilitarBotones();
+            desabilitarCampos();
         }
         public void habilitarCampos()
         {
@@ -267,10 +295,10 @@ namespace GUI_V_2.vistas
         {
             txtnombre.Text = dtProductos.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtPrecio.Text = dtProductos.Rows[e.RowIndex].Cells[3].Value.ToString();
-            monthCalendar1.SetDate(Convert.ToDateTime(dtProductos.Rows[e.RowIndex].Cells[4].Value.ToString()));
-            txtStock.Text = dtProductos.Rows[e.RowIndex].Cells[5].Value.ToString();
+            monthCalendar1.SetDate(Convert.ToDateTime(dtProductos.Rows[e.RowIndex].Cells[5].Value.ToString()));
+            txtStock.Text = dtProductos.Rows[e.RowIndex].Cells[7].Value.ToString();
             //txtnombres.Text = dtUsuairos.Rows[e.RowIndex].Cells[8].Value.ToString();
-            int estado = Convert.ToInt32(dtProductos.Rows[e.RowIndex].Cells[6].Value.ToString());
+            int estado = Convert.ToInt32(dtProductos.Rows[e.RowIndex].Cells[7].Value.ToString());
             //cmbMunicipios.SelectedIndex = selectedIndexMunicipio;
             selectedIndexProveedor = Convert.ToInt32(dtProductos.Rows[e.RowIndex].Cells[9].Value.ToString());
             selectedIndex = Convert.ToInt32(dtProductos.Rows[e.RowIndex].Cells[11].Value.ToString());
@@ -289,6 +317,16 @@ namespace GUI_V_2.vistas
             //txtIdUsuario.Enabled = true;
 
             btnEditar.Enabled = true;
+        }
+
+        private void frmProductos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

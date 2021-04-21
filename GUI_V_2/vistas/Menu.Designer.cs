@@ -31,8 +31,8 @@ namespace Gasolinera.vistas
         {
             this.menuVertical = new System.Windows.Forms.Panel();
             this.panelTitulo = new System.Windows.Forms.Panel();
-            this.panelContenedor = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -55,14 +55,6 @@ namespace Gasolinera.vistas
             this.panelTitulo.Size = new System.Drawing.Size(1000, 100);
             this.panelTitulo.TabIndex = 1;
             // 
-            // panelContenedor
-            // 
-            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(200, 100);
-            this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(1000, 350);
-            this.panelContenedor.TabIndex = 2;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(0, 47);
@@ -70,6 +62,15 @@ namespace Gasolinera.vistas
             this.pictureBox1.Size = new System.Drawing.Size(35, 25);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // panelContenedor
+            // 
+            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenedor.Location = new System.Drawing.Point(200, 100);
+            this.panelContenedor.Name = "panelContenedor";
+            this.panelContenedor.Size = new System.Drawing.Size(1000, 350);
+            this.panelContenedor.TabIndex = 2;
             // 
             // Menu
             // 

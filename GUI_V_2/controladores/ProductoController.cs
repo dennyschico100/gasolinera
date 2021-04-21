@@ -81,7 +81,7 @@ namespace GUI_V_2.controladores
             cliente = new HttpClient();
             string accessToken = "";
             var jsonObject = JsonConvert.SerializeObject(productos);
-            MessageBox.Show(jsonObject);
+            
 
             var data = new StringContent(jsonObject, Encoding.UTF8, "application/json");
             using (cliente = new HttpClient())
@@ -97,13 +97,13 @@ namespace GUI_V_2.controladores
                         {
                             string objResponse = await content.ReadAsStringAsync();
                             //user = (User)JsonConvert.DeserializeObject(objResponse, typeof(Usuarios));
-                            MessageBox.Show(objResponse);
+                            MessageBox.Show("PRODUCTO GUARDADO");
                             //return user;
                         }
                     }
                     else
                     {
-                        //MessageBox.Show(res.ToString());
+                        MessageBox.Show("OCURRIO UN ERROR ");
 
                     }
                 }
