@@ -17,7 +17,7 @@ namespace GUI_V_2.vistas
     {
         DataTable table;
         string acceso = "";
-        Producto p;
+        
         public frmFacturacion()
         {
             InitializeComponent();
@@ -39,20 +39,25 @@ namespace GUI_V_2.vistas
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
+          
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-             int id = Convert.ToInt32(txtBuscar.Text);
-             p = await ProductoController.obtenerPorId(id,acceso);
-                
+            int id = 0;   
+            id = Convert.ToInt32(txtBuscar.Text);
+            btnAgregar.Enabled = true;
+            Producto  p = await ProductoController.obtenerPorId(id,acceso);
+            txtIdProducto.Text = p.Id_producto.ToString();
+            txtStock.Text = p.Cantidad_en_stock.ToString();
+            txtnombre.Text = p.Nombre;
+            txtPrecio.Text = p.Precio.ToString();
+
 
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            p = null;
             btnAgregar.Enabled = false;
             btnCancelar.Enabled = false;
             limpiarCampos();
@@ -68,13 +73,72 @@ namespace GUI_V_2.vistas
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            txtStock.Text = p.Cantidad_en_stock.ToString();
-            txtnombre.Text = p.Nombre;
-            txtPrecio.Text = p.Precio.ToString();
-            double total = Convert.ToDouble(txtPrecio.Text) * Convert.ToInt32(txtCantidad.Text);
-            table.Rows.Add(table.Rows.Count + 1, p.Id_producto, txtCantidad.Text, DateTime.UtcNow.ToString("yyyy-MM-dd"), total);
-            limpiarCampos();
+            string cantidad =txtCantidad.Text;
+            string usuario = txtUsuario.Text;
+            if (String.IsNullOrEmpty(cantidad))
+            {   
+                errorProvider1.SetError(txtCantidad,"INGRESA LA CANTIDAD");
+                txtCantidad.Focus();
+            }else if (String.IsNullOrEmpty(usuario))
+            {
 
+                errorProvider1.SetError(txtUsuario, "INGRESA EL ID");
+                txtUsuario.Focus();
+
+                errorProvider1.SetError(txtCantidad, "");
+            }
+            else
+            {
+
+                errorProvider1.SetError(txtUsuario, "");
+                double total = Convert.ToDouble(txtPrecio.Text) * Convert.ToDouble(txtCantidad.Text);
+                table.Rows.Add(table.Rows.Count + 1, txtIdProducto.Text, txtCantidad.Text, cantidad, DateTime.UtcNow.ToString("yyyy-MM-dd"), total,usuario);
+                limpiarCampos();
+                btnAgregar.Enabled = false;
+
+            }
+           
+
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+     (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+     (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

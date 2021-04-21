@@ -29,12 +29,11 @@ namespace GUI_V_2.vistas
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dtFacturacion = new System.Windows.Forms.DataGridView();
-            this.cmbMedida = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,7 +49,11 @@ namespace GUI_V_2.vistas
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtIdProducto = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtFacturacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -113,34 +116,14 @@ namespace GUI_V_2.vistas
             this.dtFacturacion.Size = new System.Drawing.Size(721, 157);
             this.dtFacturacion.TabIndex = 108;
             // 
-            // cmbMedida
-            // 
-            this.cmbMedida.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.cmbMedida.FormattingEnabled = true;
-            this.cmbMedida.Location = new System.Drawing.Point(491, 177);
-            this.cmbMedida.Name = "cmbMedida";
-            this.cmbMedida.Size = new System.Drawing.Size(121, 21);
-            this.cmbMedida.TabIndex = 126;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label7.Location = new System.Drawing.Point(369, 177);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 18);
-            this.label7.TabIndex = 125;
-            this.label7.Text = "unidad medida";
-            // 
             // txtUsuario
             // 
             this.txtUsuario.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.txtUsuario.Location = new System.Drawing.Point(182, 175);
+            this.txtUsuario.Location = new System.Drawing.Point(478, 172);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(116, 20);
             this.txtUsuario.TabIndex = 124;
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // label6
             // 
@@ -160,7 +143,7 @@ namespace GUI_V_2.vistas
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label4.Location = new System.Drawing.Point(70, 174);
+            this.label4.Location = new System.Drawing.Point(386, 171);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 18);
             this.label4.TabIndex = 121;
@@ -248,6 +231,7 @@ namespace GUI_V_2.vistas
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(116, 20);
             this.txtCantidad.TabIndex = 127;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
             // btnBuscar
             // 
@@ -273,6 +257,8 @@ namespace GUI_V_2.vistas
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(116, 20);
             this.txtBuscar.TabIndex = 129;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
             // 
             // label8
             // 
@@ -303,18 +289,43 @@ namespace GUI_V_2.vistas
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // txtIdProducto
+            // 
+            this.txtIdProducto.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.txtIdProducto.Location = new System.Drawing.Point(182, 171);
+            this.txtIdProducto.Name = "txtIdProducto";
+            this.txtIdProducto.ReadOnly = true;
+            this.txtIdProducto.Size = new System.Drawing.Size(116, 20);
+            this.txtIdProducto.TabIndex = 132;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label7.Location = new System.Drawing.Point(70, 170);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 18);
+            this.label7.TabIndex = 133;
+            this.label7.Text = "id Producto";
+            // 
             // frmFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 518);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtIdProducto);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtCantidad);
-            this.Controls.Add(this.cmbMedida);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -334,6 +345,7 @@ namespace GUI_V_2.vistas
             this.Text = "frmFacturacion";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dtFacturacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,8 +356,6 @@ namespace GUI_V_2.vistas
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridView dtFacturacion;
-        private System.Windows.Forms.ComboBox cmbMedida;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -361,5 +371,8 @@ namespace GUI_V_2.vistas
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtIdProducto;
     }
 }

@@ -165,9 +165,11 @@ namespace GUI_V_2.controladores
             {
 
                 cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + acceso);
-                URL += "/" + id;
-                using (res = await cliente.GetAsync(URL))
+              
+                var URI = URL + "/" + id;
+                using (res = await cliente.GetAsync(URI))
                 {
+                    URI = "";
                     if (res.IsSuccessStatusCode)
                     {
                         using (content = res.Content)
@@ -180,7 +182,7 @@ namespace GUI_V_2.controladores
                                 //dt = (DataTable)JsonConvert.DeserializeObject(data, typeof(DataTable));
 
                                 producto =  (Producto) JsonConvert.DeserializeObject(data, typeof(Producto));
-                                MessageBox.Show(producto.ToString());
+                                
                                 //return producto;
                                 return producto;
 
