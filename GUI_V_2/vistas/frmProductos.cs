@@ -341,17 +341,7 @@ namespace GUI_V_2.vistas
 
         private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-     (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+           
         }
 
         private void label6_Click(object sender, EventArgs e)

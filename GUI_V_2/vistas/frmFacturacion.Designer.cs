@@ -52,6 +52,8 @@ namespace GUI_V_2.vistas
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtIdProducto = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtComentario = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtFacturacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -258,6 +260,7 @@ namespace GUI_V_2.vistas
             this.txtBuscar.Size = new System.Drawing.Size(116, 20);
             this.txtBuscar.TabIndex = 129;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
             this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
             // 
             // label8
@@ -314,11 +317,34 @@ namespace GUI_V_2.vistas
             this.label7.TabIndex = 133;
             this.label7.Text = "id Producto";
             // 
+            // txtComentario
+            // 
+            this.txtComentario.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.txtComentario.Location = new System.Drawing.Point(705, 135);
+            this.txtComentario.Multiline = true;
+            this.txtComentario.Name = "txtComentario";
+            this.txtComentario.Size = new System.Drawing.Size(204, 57);
+            this.txtComentario.TabIndex = 134;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label9.Location = new System.Drawing.Point(707, 101);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 18);
+            this.label9.TabIndex = 135;
+            this.label9.Text = "Comentarios";
+            // 
             // frmFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 518);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtComentario);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtIdProducto);
             this.Controls.Add(this.btnAgregar);
@@ -374,5 +400,7 @@ namespace GUI_V_2.vistas
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtIdProducto;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtComentario;
     }
 }

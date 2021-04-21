@@ -103,6 +103,8 @@ namespace Gasolinera.Modelo
             this.Id_usuario = f.Id_usuario;
         }
 
-       
+        public Factura()
+        {
+        }
     }
 }

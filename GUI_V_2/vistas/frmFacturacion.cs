@@ -39,7 +39,35 @@ namespace GUI_V_2.vistas
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-          
+            Factura factura = new Factura();
+            string comentario = txtComentario.Text;
+            double totalFactura = 0;
+            factura.Detalle = comentario;
+            factura.Id_usuario = Convert.ToInt32(txtUsuario.Text);
+            factura.Id_tipo_pago = 1;
+            factura.Id_estado = 1;
+
+            int count =dtFacturacion.Rows.Count;
+            if (count !=0)
+            {
+                for (int i = 0; i < count; i++)
+                {
+
+                    totalFactura += Convert.ToDouble(dtFacturacion.Rows[i].Cells["total"].Value.ToString());
+                }
+            }
+            else
+            {
+                errorProvider1.SetError(txtBuscar, "Seleccione");
+                MessageBox.Show("agregue productos a la factura");
+                txtBuscar.Focus();
+            }
+
+            errorProvider1.SetError(txtBuscar, "");
+            errorProvider1.SetError(txtUsuario, "");
+            errorProvider1.SetError(txtCantidad, "");
+            
+
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
@@ -113,6 +141,11 @@ namespace GUI_V_2.vistas
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
+
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
      (e.KeyChar != '.'))
             {
@@ -126,7 +159,7 @@ namespace GUI_V_2.vistas
             }
         }
 
-        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
      (e.KeyChar != '.'))

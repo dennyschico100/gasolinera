@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controladores\CategoriaController.cs" />
+    <Compile Include="controladores\FacturaController.cs" />
     <Compile Include="controladores\LoginController.cs" />
     <Compile Include="controladores\ProductoController.cs" />
     <Compile Include="controladores\ProveedorController.cs" />
