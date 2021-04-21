@@ -98,9 +98,9 @@ namespace GUI_V_2
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
-            
-        
+            AbrirFormEnPanel(new frmFacturacion());
+
+
         }
 
         private void button6_Click(object sender, EventArgs e)

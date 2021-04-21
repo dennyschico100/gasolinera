@@ -51,7 +51,7 @@ namespace GUI_V_2.vistas
             string nombre = txtnombre.Text.Trim();
             string precio =txtPrecio.Text.Trim();
             string stock = txtStock.Text.Trim();
-            int estado = 0;
+            bool estado = true;
             string fecha = monthCalendar1.SelectionStart.Date.ToString("yyyy-MM-dd");
             string imagen = imagenRuta.Text.Trim();
             string usuario = txtUsuario.Text.Trim();
@@ -104,11 +104,11 @@ namespace GUI_V_2.vistas
             {
                 if (rbdActivo.Checked)
                 {
-                   estado = 1;
+                   estado = true;
                 }
                 else
                 {
-                    estado = 2;
+                    estado = false;
                 }
 
                 Producto productos = new Producto();
@@ -325,6 +325,66 @@ namespace GUI_V_2.vistas
         }
 
         private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtnombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtStock_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbMedida_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

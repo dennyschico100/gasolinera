@@ -12,13 +12,17 @@ namespace Gasolinera.Modelo
         private string nombre;
         private double precio;
         private string fecha_registro;
+        private string fecha_modificacion;
+
         private string imagen;
-        private int cantidad_en_stock;
-        private int estado_producto;
+        private double cantidad_en_stock;
+        private bool estado_producto;
         private int id_unidad;
         private int id_proveedor;
         private int id_usuario;
         private int id_categoria;
+        private int id;
+
         public Producto()
         {
 
@@ -35,6 +39,19 @@ namespace Gasolinera.Modelo
                 id_producto = value;
             }
         }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
 
         public string Nombre
         {
@@ -75,6 +92,20 @@ namespace Gasolinera.Modelo
             }
         }
 
+        public string Fecha_modifiacion
+        {
+            get
+            {
+                return fecha_modificacion;
+            }
+
+            set
+            {
+                fecha_modificacion = value;
+            }
+        }
+
+
         public string Imagen
         {
             get
@@ -88,7 +119,7 @@ namespace Gasolinera.Modelo
             }
         }
 
-        public int Cantidad_en_stock
+        public double Cantidad_en_stock
         {
             get
             {
@@ -101,7 +132,7 @@ namespace Gasolinera.Modelo
             }
         }
 
-        public int Estado_producto
+        public bool Estado_producto
         {
             get
             {
@@ -179,6 +210,11 @@ namespace Gasolinera.Modelo
             this.id_proveedor = p.id_proveedor;
             this.id_usuario = p.id_usuario;
             this.id_categoria = p.id_categoria;
+        }
+
+        public static implicit operator Producto(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -157,6 +157,51 @@ namespace GUI_V_2.controladores
             return null;
         }
 
+        public static async Task<Producto> obtenerPorId(int id,string acceso)
+        {
+            dt = new DataTable();
+            Producto producto;
+            using (cliente = new HttpClient())
+            {
+
+                cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + acceso);
+                URL += "/" + id;
+                using (res = await cliente.GetAsync(URL))
+                {
+                    if (res.IsSuccessStatusCode)
+                    {
+                        using (content = res.Content)
+                        {
+                            var data = await content.ReadAsStringAsync();
+
+                            if (data != null)
+                            {
+                                //Make sure to add a reference to System.Net.Http.Formatting.dll
+                                //dt = (DataTable)JsonConvert.DeserializeObject(data, typeof(DataTable));
+
+                                producto =  (Producto) JsonConvert.DeserializeObject(data, typeof(Producto));
+                                MessageBox.Show(producto.ToString());
+                                //return producto;
+                                return producto;
+
+
+                            }
+                            else
+                            {
+                            }
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
+
+                }
+            }
+            return null;
+        }
 
     }
 }

@@ -75,6 +75,7 @@ namespace GUI_V_2.vistas
             this.label1.Size = new System.Drawing.Size(206, 47);
             this.label1.TabIndex = 61;
             this.label1.Text = "Productos";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label11
             // 
@@ -146,6 +147,7 @@ namespace GUI_V_2.vistas
             this.label4.Size = new System.Drawing.Size(67, 18);
             this.label4.TabIndex = 88;
             this.label4.Text = "Usuario";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // groupBox2
             // 
@@ -194,6 +196,7 @@ namespace GUI_V_2.vistas
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(116, 20);
             this.txtStock.TabIndex = 85;
+            this.txtStock.TextChanged += new System.EventHandler(this.txtStock_TextChanged);
             this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             this.txtStock.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtStock_KeyUp);
             // 
@@ -204,6 +207,7 @@ namespace GUI_V_2.vistas
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(116, 20);
             this.txtPrecio.TabIndex = 84;
+            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // txtnombre
@@ -213,6 +217,7 @@ namespace GUI_V_2.vistas
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(116, 20);
             this.txtnombre.TabIndex = 83;
+            this.txtnombre.TextChanged += new System.EventHandler(this.txtnombre_TextChanged);
             // 
             // label5
             // 
@@ -225,6 +230,7 @@ namespace GUI_V_2.vistas
             this.label5.Size = new System.Drawing.Size(77, 18);
             this.label5.TabIndex = 81;
             this.label5.Text = "En Stock";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label3
             // 
@@ -234,9 +240,10 @@ namespace GUI_V_2.vistas
             this.label3.ForeColor = System.Drawing.Color.DodgerBlue;
             this.label3.Location = new System.Drawing.Point(101, 140);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 18);
+            this.label3.Size = new System.Drawing.Size(14, 18);
             this.label3.TabIndex = 80;
-            this.label3.Text = "Precio";
+            this.label3.Text = "`";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -249,6 +256,7 @@ namespace GUI_V_2.vistas
             this.label2.Size = new System.Drawing.Size(73, 18);
             this.label2.TabIndex = 79;
             this.label2.Text = "Nombre:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnEliminar
             // 
@@ -360,6 +368,7 @@ namespace GUI_V_2.vistas
             this.label6.Size = new System.Drawing.Size(78, 18);
             this.label6.TabIndex = 110;
             this.label6.Text = "categoria";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // cmbCategoria
             // 
@@ -378,6 +387,7 @@ namespace GUI_V_2.vistas
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(116, 20);
             this.txtUsuario.TabIndex = 111;
+            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // label7
             // 
@@ -390,6 +400,7 @@ namespace GUI_V_2.vistas
             this.label7.Size = new System.Drawing.Size(116, 18);
             this.label7.TabIndex = 112;
             this.label7.Text = "unidad medida";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // cmbMedida
             // 
@@ -399,6 +410,7 @@ namespace GUI_V_2.vistas
             this.cmbMedida.Name = "cmbMedida";
             this.cmbMedida.Size = new System.Drawing.Size(121, 21);
             this.cmbMedida.TabIndex = 113;
+            this.cmbMedida.SelectedIndexChanged += new System.EventHandler(this.cmbMedida_SelectedIndexChanged);
             // 
             // frmProductos
             // 
